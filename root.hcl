@@ -56,7 +56,7 @@ remote_state {
 
 #-------------------------------------------------------------------------------------------
 # GLOBAL INPUTS
-# These inputs apply to all terragrunt configurations in this subfolder. 
+# These inputs apply to all terragrunt configurations in this subfolder.
 # There will be automatically merged into the child `terragrunt.hcl` using `include {}` block.
 #-------------------------------------------------------------------------------------------
 

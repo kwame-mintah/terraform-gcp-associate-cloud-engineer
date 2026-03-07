@@ -29,7 +29,7 @@ EOF
 
 variable "gcp_zone" {
   description = <<-EOF
-  The default zone to manage resources in. Generally, 
+  The default zone to manage resources in. Generally,
   this zone should be within the default region you specified.
 
 EOF
