@@ -1,4 +1,4 @@
-## Directory environment varibales
+## Directory environment variables
 .envrc
 
 ### Terraform ###
@@ -16,6 +16,7 @@ crash.*.log
 # Ensure no secrets file is added
 secrets.tfvars
 *.tfvars.json
+playground-*.json
 
 ## Terragrun cache
 .terragrunt-cache
