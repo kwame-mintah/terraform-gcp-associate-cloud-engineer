@@ -4,6 +4,11 @@ The main purpose of this repository is to create resources that are mentioned wi
 
 ## Development
 
+The projects' GCP identity and resource set up, uses the environment oriented hierarchy, so one organisation contains a folder
+per environment and is simple to implement. There are challenges such as deploying shared resources across multiple environments.
+
+![Environment Oriented Hierarchy](./docs/gcloud_environment_oriented_hierarchy.png)
+
 ### Dependencies
 
 - [gcloud](https://cloud.google.com/sdk/docs/install)
