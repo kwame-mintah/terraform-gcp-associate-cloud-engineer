@@ -36,3 +36,10 @@ EOF
 
   type = string
 }
+
+variable "environment" {
+  description = <<-EOF
+  The environment type e.g. development, staging, production."
+EOF
+  type        = string
+}

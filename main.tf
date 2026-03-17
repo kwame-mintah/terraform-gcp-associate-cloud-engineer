@@ -14,3 +14,8 @@ resource "google_project_service" "project_dependant_services" {
   disable_dependent_services = true
   depends_on                 = [time_sleep.wait_30_seconds]
 }
+
+resource "google_folder" "environment_folder" {
+  display_name = var.environment
+  parent       = "organizations/559580651912"
+}
