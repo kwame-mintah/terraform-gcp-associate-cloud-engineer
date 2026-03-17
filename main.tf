@@ -7,8 +7,9 @@ resource "time_sleep" "wait_30_seconds" {
 }
 
 resource "google_project_service" "project_dependant_services" {
-  project = data.google_project.project.id
-  service = "cloudresourcemanager.googleapis.com"
+  for_each = toset(["cloudresourcemanager.googleapis.com", "cloudidentity.googleapis.com", "serviceusage.googleapis.com"])
+  project  = data.google_project.project.id
+  service  = each.key
 
   disable_dependent_services = true
   depends_on                 = [time_sleep.wait_30_seconds]
