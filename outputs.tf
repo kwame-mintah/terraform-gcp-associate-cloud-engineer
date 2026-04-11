@@ -4,5 +4,5 @@ output "gcp_project_number" {
 
 EOF
 
-  value = data.google_project.project.number
+  value = google_project.project.number
 }

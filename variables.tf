@@ -43,3 +43,11 @@ variable "environment" {
 EOF
   type        = string
 }
+
+
+variable "organization_domain_name" {
+  description = <<-EOF
+  The domain name of the Organization"
+EOF
+  type        = string
+}
