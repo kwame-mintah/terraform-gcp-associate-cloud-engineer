@@ -12,6 +12,7 @@ locals {
   # Could use `find_in_parent_folders()` if file was in the parent directory.
   environment      = read_terragrunt_config("environment.hcl")
   environment_name = local.environment.locals.environment_name
+  bucket_suffix = substr(md5(local.gcp_project_id), 0, 6)
 }
 
 # Generate the GCP Provider configuration
@@ -40,7 +41,7 @@ remote_state {
   config = {
     project  = local.gcp_project_id
     location = local.gcp_region
-    bucket   = "tfstate-${local.project_name}-${local.gcp_region}-${local.environment_name}"
+    bucket   = "tfstate-${local.project_name}-${local.gcp_region}-${local.environment_name}-${local.bucket_suffix}"
     prefix   = "${path_relative_to_include()}/terraform.tfstate"
 
     gcs_bucket_labels = {
@@ -65,4 +66,5 @@ inputs = {
   gcp_project  = "${local.gcp_project_id}"
   gcp_zone     = "${local.gcp_zone}"
   project_name = "${local.project_name}"
+  organization_domain_name = "intuitive-judgments.com"
 }
