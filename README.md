@@ -66,19 +66,20 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
-
 ## Requirements
 
-| Name                                                                     | Version            |
-| ------------------------------------------------------------------------ | ------------------ |
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.5.7, <= 1.9.0 |
-| <a name="requirement_google"></a> [google](#requirement_google)          | ~> 7.22.0          |
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7, <= 1.9.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 7.22.0 |
+| <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.13.1 |
 
 ## Providers
 
-| Name                                                      | Version |
-| --------------------------------------------------------- | ------- |
-| <a name="provider_google"></a> [google](#provider_google) | 7.22.0  |
+| Name | Version |
+|------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | 7.22.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | 0.13.1 |
 
 ## Modules
 
@@ -86,23 +87,35 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                | Type        |
-| ------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [google_project.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project) | data source |
+| Name | Type |
+|------|------|
+| [google_folder.environment_folder](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder) | resource |
+| [google_folder_organization_policy.folder_restrict_kms_resource_location](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder_organization_policy) | resource |
+| [google_project.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project) | resource |
+| [google_project_iam_audit_config.project_audit](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_audit_config) | resource |
+| [google_project_service.project_dependant_services](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
+| [time_sleep.wait_30_seconds](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
+| [google_organization.org](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/organization) | data source |
 
 ## Inputs
 
-| Name                                                                                    | Description                                                                                                                                | Type          | Default | Required |
-| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------- | :------: |
-| <a name="input_gcp_default_labels"></a> [gcp_default_labels](#input_gcp_default_labels) | Labels that will be applied to all resources with a top level labels field or a labels<br/>field nested inside a top level metadata field. | `map(string)` | `{}`    |    no    |
-| <a name="input_gcp_project"></a> [gcp_project](#input_gcp_project)                      | The default project to manage resources in.                                                                                                | `string`      | n/a     |   yes    |
-| <a name="input_gcp_region"></a> [gcp_region](#input_gcp_region)                         | The default region to manage resources in.                                                                                                 | `string`      | n/a     |   yes    |
-| <a name="input_gcp_zone"></a> [gcp_zone](#input_gcp_zone)                               | The default zone to manage resources in. Generally,<br/>this zone should be within the default region you specified.                       | `string`      | n/a     |   yes    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_environment"></a> [environment](#input\_environment) | The environment type e.g. development, staging, production." | `string` | n/a | yes |
+| <a name="input_gcp_billing_account"></a> [gcp\_billing\_account](#input\_gcp\_billing\_account) | The alphanumeric ID of the billing account this project belongs to. | `string` | n/a | yes |
+| <a name="input_gcp_default_labels"></a> [gcp\_default\_labels](#input\_gcp\_default\_labels) | Labels that will be applied to all resources with a top level labels field or a labels<br/>field nested inside a top level metadata field. | `map(string)` | `{}` | no |
+| <a name="input_gcp_project"></a> [gcp\_project](#input\_gcp\_project) | The default project to manage resources in. | `string` | n/a | yes |
+| <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | The default region to manage resources in. | `string` | n/a | yes |
+| <a name="input_gcp_zone"></a> [gcp\_zone](#input\_gcp\_zone) | The default zone to manage resources in. Generally,<br/>this zone should be within the default region you specified. | `string` | n/a | yes |
+| <a name="input_organization_domain_name"></a> [organization\_domain\_name](#input\_organization\_domain\_name) | The domain name of the Organization" | `string` | n/a | yes |
 
 ## Outputs
 
-| Name                                                                                      | Description                            |
-| ----------------------------------------------------------------------------------------- | -------------------------------------- |
-| <a name="output_gcp_project_number"></a> [gcp_project_number](#output_gcp_project_number) | The numeric identifier of the project. |
-
+| Name | Description |
+|------|-------------|
+| <a name="output_gcp_project_number"></a> [gcp\_project\_number](#output\_gcp\_project\_number) | The numeric identifier of the project. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+
+# References
+
+[Google Cloud Associate Cloud Engineer Course [2025] - Pass the Exam!](https://youtu.be/OlAmyf8_4O4) - [freeCodeCamp.org](https://www.youtube.com/@freecodecamp)
