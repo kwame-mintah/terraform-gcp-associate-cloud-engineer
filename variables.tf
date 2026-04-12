@@ -27,6 +27,15 @@ EOF
   type = string
 }
 
+variable "gcp_billing_account" {
+  description = <<-EOF
+  The alphanumeric ID of the billing account this project belongs to.
+
+EOF
+
+  type = string
+}
+
 variable "gcp_zone" {
   description = <<-EOF
   The default zone to manage resources in. Generally,

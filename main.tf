@@ -8,7 +8,6 @@ data "google_organization" "org" {
   domain = var.organization_domain_name
 }
 
-
 resource "time_sleep" "wait_30_seconds" {
   create_duration = "30s"
   depends_on      = [google_project.project]
@@ -24,6 +23,7 @@ resource "google_project" "project" {
   project_id          = "gcp-ace-2026-${local.org_suffix}"
   folder_id           = google_folder.environment_folder.name
   auto_create_network = false
+  billing_account     = var.gcp_billing_account
 }
 
 resource "google_project_iam_audit_config" "project_audit" {
@@ -41,7 +41,7 @@ resource "google_project_iam_audit_config" "project_audit" {
 }
 
 resource "google_project_service" "project_dependant_services" {
-  for_each = toset(["cloudresourcemanager.googleapis.com", "cloudidentity.googleapis.com", "serviceusage.googleapis.com"])
+  for_each = toset(["cloudresourcemanager.googleapis.com", "cloudidentity.googleapis.com", "serviceusage.googleapis.com", "orgpolicy.googleapis.com", "cloudkms.googleapis.com", "container.googleapis.com"])
   project  = google_project.project.id
   service  = each.key
 
