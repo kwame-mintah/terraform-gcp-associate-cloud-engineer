@@ -2,26 +2,27 @@
 # -----------------------------------------------
 # Arbitrary policy restrictions to demonstrate various levels they can be set.
 
-# Running into permission issues when applying unsure where to look? (org)
-# resource "google_org_policy_policy" "org_vm_no_external_ip_access" {
-#   name   = "${data.google_organization.org.name}/policies/compute.vmExternalIpAccess"
-#   parent = data.google_organization.org.name
+# Unable to apply (?), apply seems to be targeting a unknown project (projects/764086051850)
+# the API service (orgpolicy.googleapis.com) has been enabled, also does `name` and `parent`,
+# suffix with `organizations/` or not?
+# Policy would have reset any custom related configurations for the policy managed below.
+# resource "google_org_policy_policy" "org_reset_clear_custom_detailed_audit_logging_mode" {
+#   name   = "${data.google_organization.org.id}/policies/gcp.detailedAuditLoggingMode"
+#   parent = data.google_organization.org.id
 
 #   spec {
-#     rules {
-#       enforce = true
-#     }
+#     reset = true
 #   }
 # }
 
-resource "google_folder_organization_policy" "folder_restrict_kms_resource_location" {
+resource "google_folder_organization_policy" "folder_restrict_resource_location" {
   folder     = google_folder.environment_folder.name
   constraint = "constraints/gcp.resourceLocations"
 
   list_policy {
     allow {
       values = [
-        var.gcp_region
+        "in:${var.gcp_region}-locations"
       ]
     }
   }
