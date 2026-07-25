@@ -15,7 +15,7 @@ repos:
       - id: terraform-validate
       - id: terraform-fmt
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.106.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    rev: v1.108.1 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
     hooks:
       - id: terraform_trivy
         args:
@@ -40,7 +40,7 @@ repos:
           - "--args=--enable-rule=terraform_standard_module_structure"
       - id: terragrunt_fmt
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.16.3 # Get the latest from: https://github.com/commitizen-tools/commitizen/releases
+    rev: v4.16.5 # Get the latest from: https://github.com/commitizen-tools/commitizen/releases
     hooks:
       - id: commitizen
         stages: [commit-msg]
