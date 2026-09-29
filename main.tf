@@ -24,6 +24,29 @@ resource "google_project" "project" {
   folder_id           = google_folder.environment_folder.name
   auto_create_network = false
   billing_account     = var.gcp_billing_account
+
+resource "google_tags_tag_key" "org_tag_key" {
+  parent      = data.google_organization.org.name
+  short_name  = "organisation"
+  description = "Which organisation the resources belong to."
+}
+
+resource "google_tags_tag_value" "org_tag_value" {
+  parent      = google_tags_tag_key.org_tag_key.id
+  short_name  = var.organization_domain_name
+  description = "For organisation resources."
+}
+
+resource "google_tags_tag_key" "project_env_tag_key" {
+  parent      = google_project.project.id
+  short_name  = "environment"
+  description = "Which environment the resources belong to."
+}
+
+resource "google_tags_tag_value" "project_env_tag_value" {
+  parent      = google_tags_tag_key.project_env_tag_key.id
+  short_name  = var.environment
+  description = "For environment resources."
 }
 
 resource "google_project_iam_audit_config" "project_audit" {
