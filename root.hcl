@@ -27,6 +27,8 @@ provider "google" {
   project        = "${local.gcp_project_id}"
   region         = "${local.gcp_region}"
   zone           = "${local.gcp_zone}"
+  billing_project       = "${local.gcp_project_id}"
+  user_project_override = true
   add_terraform_attribution_label               = true
   terraform_attribution_label_addition_strategy = "PROACTIVE"
 }
