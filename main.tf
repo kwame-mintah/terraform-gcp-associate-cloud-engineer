@@ -4,6 +4,12 @@ locals {
   org_suffix = substr(md5(var.organization_domain_name), 0, 6)
 }
 
+# ```markdown
+# └── 🏠 intuitive-judgments.com/
+#     └── 📁 development/
+#         └── ⚙️ gcp-ace/
+# ```
+
 data "google_organization" "org" {
   domain = var.organization_domain_name
 }
@@ -24,6 +30,11 @@ resource "google_project" "project" {
   folder_id           = google_folder.environment_folder.name
   auto_create_network = false
   billing_account     = var.gcp_billing_account
+  labels = {
+    organisation = replace(var.organization_domain_name, ".", "-")
+    environment  = var.environment
+  }
+}
 
 resource "google_tags_tag_key" "org_tag_key" {
   parent      = data.google_organization.org.name
