@@ -28,12 +28,13 @@ resource "google_folder_organization_policy" "folder_restrict_resource_location"
   }
 }
 
-# Running into permission issues when applying unsure where to look? (org, folder, project)
-# resource "google_project_organization_policy" "project_gke_require_binary_auth" {
-#   project    = google_project.project.name
-#   constraint = "constraints/gke.requireBinaryAuthorization"
+resource "google_org_policy_policy" "project_gke_require_binary_auth" {
+  name   = "projects/${google_project.project.project_id}/policies/container.managed.enableBinaryAuthorization"
+  parent = "projects/${google_project.project.project_id}"
 
-#   boolean_policy {
-#     enforced = true
-#   }
-# }
+  spec {
+    rules {
+      enforce = "TRUE"
+    }
+  }
+}
