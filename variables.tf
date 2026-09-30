@@ -60,3 +60,10 @@ variable "organization_domain_name" {
 EOF
   type        = string
 }
+
+variable "user_within_organisation_email_address" {
+  description = <<-EOF
+  Email address of another user within the organisation being managed"
+EOF
+  type        = string
+}
