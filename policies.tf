@@ -2,18 +2,18 @@
 # -----------------------------------------------
 # Arbitrary policy restrictions to demonstrate various levels they can be set.
 
-# Unable to apply (?), apply seems to be targeting a unknown project (projects/764086051850)
-# the API service (orgpolicy.googleapis.com) has been enabled, also does `name` and `parent`,
-# suffix with `organizations/` or not?
-# Policy would have reset any custom related configurations for the policy managed below.
-# resource "google_org_policy_policy" "org_reset_clear_custom_detailed_audit_logging_mode" {
-#   name   = "${data.google_organization.org.id}/policies/gcp.detailedAuditLoggingMode"
-#   parent = data.google_organization.org.id
+# Cloud Storage detailed audit logging is enforced throughout the organisation.
+resource "google_org_policy_policy" "org_enforce_storage_audit_logging" {
+  name   = "${data.google_organization.org.id}/policies/gcp.detailedAuditLoggingMode"
+  parent = data.google_organization.org.id
 
-#   spec {
-#     reset = true
-#   }
-# }
+  spec {
+    rules {
+      enforce = true
+    }
+  }
+}
+
 
 resource "google_folder_organization_policy" "folder_restrict_resource_location" {
   folder     = google_folder.environment_folder.name
@@ -28,6 +28,7 @@ resource "google_folder_organization_policy" "folder_restrict_resource_location"
   }
 }
 
+# Control whether container images are allowed to be deployed based on security policies.
 resource "google_org_policy_policy" "project_gke_require_binary_auth" {
   name   = "projects/${google_project.project.project_id}/policies/container.managed.enableBinaryAuthorization"
   parent = "projects/${google_project.project.project_id}"
