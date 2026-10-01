@@ -56,14 +56,15 @@ EOF
 
 variable "organization_domain_name" {
   description = <<-EOF
-  The domain name of the Organization"
+  The domain name of the Organisation"
 EOF
   type        = string
 }
 
-variable "user_within_organisation_email_address" {
+variable "organization_development_group_email_address" {
   description = <<-EOF
-  Email address of another user within the organisation being managed"
+  The email address of the development team group within Google Workspace"
 EOF
   type        = string
+  default     = ""
 }

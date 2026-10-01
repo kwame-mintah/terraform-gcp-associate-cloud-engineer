@@ -3,7 +3,7 @@
 # Creating various roles and assign permissions etc.
 
 resource "google_organization_iam_custom_role" "iam_custom_org_iam_role_viewer" {
-  count = var.user_within_organisation_email_address == "" ? 0 : 1
+  count = var.organization_development_group_email_address == "" ? 0 : 1
 
   org_id      = data.google_organization.org.org_id
   role_id     = "custom_org_iam_role_viewer"
@@ -15,11 +15,11 @@ resource "google_organization_iam_custom_role" "iam_custom_org_iam_role_viewer" 
 
 
 resource "google_project_iam_member" "iam_custom_org_iam_role_member" {
-  count = var.user_within_organisation_email_address == "" ? 0 : 1
+  count = var.organization_development_group_email_address == "" ? 0 : 1
 
   project = google_project.project.project_id
   role    = "organizations/${data.google_organization.org.org_id}/roles/${google_organization_iam_custom_role.iam_custom_org_iam_role_viewer[0].role_id}"
-  member  = "user:${var.user_within_organisation_email_address}"
+  member  = "group:${var.organization_development_group_email_address}"
 
   condition {
     title       = "expires_after_31_12_2026"
