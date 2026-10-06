@@ -1,0 +1,6 @@
+# App Engine directory to upload zip files into a GCP Bucket
+# Find zip files in repository: https://github.com/kwame-mintah/gcp-app-engine-python-fastapi-static-app
+# See workflow '🤐 Build App Engine deployment packages', download artifact 'app-engine-deployment-packages'
+# And unzip and place other zip files here:
+# - app-flexible.zip
+# - app-standard.zip

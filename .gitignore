@@ -20,3 +20,6 @@ playground-*.json
 
 ## Terragrun cache
 .terragrunt-cache
+
+## Git keeps
+*.zip
