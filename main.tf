@@ -7,7 +7,7 @@ locals {
 # ```markdown
 # └── 🏠 intuitive-judgments.com/
 #     └── 📁 development/
-#         └── ⚙️ gcp-ace/
+#         └── ⚙️ gcp-ace
 # ```
 
 data "google_organization" "org" {
@@ -20,8 +20,9 @@ resource "time_sleep" "wait_30_seconds" {
 }
 
 resource "google_folder" "environment_folder" {
-  display_name = var.environment
-  parent       = data.google_organization.org.name
+  display_name        = var.environment
+  parent              = data.google_organization.org.name
+  deletion_protection = false
 }
 
 resource "google_project" "project" {
@@ -34,6 +35,7 @@ resource "google_project" "project" {
     organisation = replace(var.organization_domain_name, ".", "-")
     environment  = var.environment
   }
+  deletion_policy = "DELETE"
 }
 
 resource "google_tags_tag_key" "org_tag_key" {
@@ -75,7 +77,7 @@ resource "google_project_iam_audit_config" "project_audit" {
 }
 
 resource "google_project_service" "project_dependant_services" {
-  for_each = toset(["cloudresourcemanager.googleapis.com", "cloudidentity.googleapis.com", "serviceusage.googleapis.com", "orgpolicy.googleapis.com", "cloudkms.googleapis.com", "container.googleapis.com"])
+  for_each = toset(["cloudresourcemanager.googleapis.com", "cloudidentity.googleapis.com", "serviceusage.googleapis.com", "orgpolicy.googleapis.com", "cloudkms.googleapis.com", "container.googleapis.com", "appengineflex.googleapis.com", "appengine.googleapis.com"])
   project  = google_project.project.id
   service  = each.key
 
