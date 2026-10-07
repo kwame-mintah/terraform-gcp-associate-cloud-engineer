@@ -30,13 +30,13 @@ resource "google_project_iam_member" "iam_custom_org_iam_role_member" {
   depends_on = [google_organization_iam_custom_role.iam_custom_org_iam_role_viewer]
 }
 
-resource "google_project_iam_member" "app_engine_service_account_networkuser" {
+resource "google_project_iam_member" "service_account_app_engine_service_account_networkuser" {
   project = google_service_account.app_engine_service_account.project
   role    = "roles/compute.networkUser"
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
-resource "google_project_iam_member" "app_engine_service_account_object_viewer" {
+resource "google_project_iam_member" "service_account_app_engine_service_account_object_viewer" {
   project = google_service_account.app_engine_service_account.project
   role    = "roles/storage.objectViewer"
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
@@ -60,13 +60,13 @@ resource "google_storage_bucket_iam_member" "default_app_engine_service_read_zip
 
 # The cloud build triggered by App Engine assumes this role and not the default cloud build
 # role usually found within the project.
-resource "google_project_iam_member" "default_app_engine_artifact_editor" {
+resource "google_project_iam_member" "service_account_app_engine_artifact_editor" {
   project = google_project.project.project_id
   role    = "roles/artifactregistry.editor"
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
-resource "google_artifact_registry_repository_iam_member" "default_app_engine_gae_standard_registry_reader" {
+resource "google_artifact_registry_repository_iam_member" "service_account_app_engine_gae_standard_registry_reader" {
   project    = google_project.project.project_id
   location   = var.gcp_region
   repository = "gae-standard"
