@@ -12,6 +12,11 @@ resource "google_org_policy_policy" "org_enforce_storage_audit_logging" {
       enforce = true
     }
   }
+
+  # ADC setting quota isn't picked up as expected for Org V2 calls,
+  # Will need to manually set this and retry again on first attempt.
+  # e.g export GOOGLE_CLOUD_QUOTA_PROJECT=google_project.project.project_id
+  depends_on = [google_project.project]
 }
 
 
@@ -38,4 +43,9 @@ resource "google_org_policy_policy" "project_gke_require_binary_auth" {
       enforce = "TRUE"
     }
   }
+
+  # ADC setting quota isn't picked up as expected for Org V2 calls,
+  # Will need to manually set this and retry again on first attempt.
+  # e.g export GOOGLE_CLOUD_QUOTA_PROJECT=google_project.project.project_id
+  depends_on = [google_project.project]
 }
