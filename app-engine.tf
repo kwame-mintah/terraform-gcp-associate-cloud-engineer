@@ -33,8 +33,8 @@ resource "google_app_engine_standard_app_version" "app_engine_standard_fastapi_s
     standard_scheduler_settings {
       target_cpu_utilization        = 0.5
       target_throughput_utilization = 0.75
-      min_instances                 = 2
-      max_instances                 = 10
+      min_instances                 = 1
+      max_instances                 = 2
     }
   }
 
