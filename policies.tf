@@ -9,7 +9,7 @@ resource "google_org_policy_policy" "org_enforce_storage_audit_logging" {
 
   spec {
     rules {
-      enforce = true
+      enforce = "true"
     }
   }
 
@@ -41,7 +41,7 @@ resource "google_org_policy_policy" "project_gke_require_binary_auth" {
 
   spec {
     rules {
-      enforce = "TRUE"
+      enforce = "true"
     }
   }
 
