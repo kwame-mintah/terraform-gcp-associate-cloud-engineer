@@ -42,6 +42,12 @@ resource "google_project_iam_member" "service_account_app_engine_service_account
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
+resource "google_project_iam_member" "service_account_app_engine_service_account_logs_writer" {
+  project = google_project.project.project_id
+  role    = "roles/logging.logWriter"
+  member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
+}
+
 resource "google_storage_bucket_iam_member" "default_app_engine_admin_staging_bucket" {
   bucket = "staging.${google_project.project.project_id}.appspot.com"
   role   = "roles/storage.admin"
@@ -63,13 +69,19 @@ resource "google_storage_bucket_iam_member" "default_app_engine_service_read_zip
 resource "google_project_iam_member" "service_account_app_engine_artifact_editor" {
   project = google_project.project.project_id
   role    = "roles/artifactregistry.editor"
-  member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
+  # member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
+  #checkov:skip=CKV_GCP_46:out of scope for this demonstration.
+  # Seems the cloud build that is used for deployment uses the default service account and not
+  # assuming the created and attached one within Terraform (?), without this, fails the build due to:
+  # DENIED: Permission 'artifactregistry.repositories.downloadArtifacts' denied on resource '//artifactregistry.googleapis.com/projects/<project-id>/locations/europe/repositories/eu.gcr.io' (or it may not exist).
+  member = "serviceAccount:${google_project.project.project_id}@appspot.gserviceaccount.com"
 }
 
 resource "google_artifact_registry_repository_iam_member" "service_account_app_engine_gae_standard_registry_reader" {
+  for_each   = toset(["gae-standard", "gae-flexible"])
   project    = google_project.project.project_id
   location   = var.gcp_region
-  repository = "gae-standard"
+  repository = each.key
   role       = "roles/artifactregistry.reader"
   member     = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }

@@ -27,7 +27,8 @@ resource "google_folder_organization_policy" "folder_restrict_resource_location"
   list_policy {
     allow {
       values = [
-        "in:${var.gcp_region}-locations"
+        "in:eu-locations",
+        "in:${var.gcp_region}-locations",
       ]
     }
   }
