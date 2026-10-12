@@ -29,3 +29,10 @@ resource "google_storage_bucket_object" "upload_standard_fastapi_static_app" {
   bucket = google_storage_bucket.app_engine_zip_bucket.name
   source = "./app-engine/app-standard.zip"
 }
+
+
+resource "google_storage_bucket_object" "upload_cloud_function_http_framework" {
+  name   = "cloud-run-function.zip"
+  bucket = google_storage_bucket.app_engine_zip_bucket.name
+  source = "${path.module}/cloud-run-function.zip"
+}
