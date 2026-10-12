@@ -1,6 +1,6 @@
 # Generated -------------------------------------
 # -----------------------------------------------
-# Sometimes, you gotta take the shortcut (?!) 
+# Sometimes, you gotta take the shortcut (?!)
 
 resource "local_file" "python_cloud_run_http_main_py" {
   filename = "${path.module}/generated/main.py"
@@ -25,7 +25,7 @@ data "archive_file" "python_cloud_run_zip" {
   output_path = "${path.module}/cloud-run-function.zip"
 
   depends_on = [
-    local_file.main_py,
-    local_file.requirements
+    local_file.python_cloud_run_http_main_py,
+    local_file.python_cloud_run_http_requirements
   ]
 }

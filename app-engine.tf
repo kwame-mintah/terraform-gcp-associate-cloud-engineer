@@ -24,7 +24,7 @@ resource "google_app_engine_standard_app_version" "app_engine_standard_fastapi_s
     }
   }
 
-   instance_class = "F1"
+  instance_class = "F1"
 
   automatic_scaling {
     max_concurrent_requests = 10

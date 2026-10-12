@@ -24,6 +24,7 @@ resource "google_cloudfunctions2_function" "cloud_run_2nd_gen_fastapi_static_app
     max_instance_count = 1
     available_memory   = "512M"
     timeout_seconds    = 60
+    ingress_settings   = "ALLOW_INTERNAL_ONLY"
 
     # Allow unauthenticated requests if your app is public.
     # Alternatively, configure IAM authentication separately.

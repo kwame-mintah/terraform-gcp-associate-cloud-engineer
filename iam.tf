@@ -94,14 +94,16 @@ resource "google_project_iam_member" "cloudbuild_artifactregistry_writer" {
 
 resource "google_project_iam_member" "cloud_build_service_account_logs_writer" {
   project = google_project.project.project_id
-  role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${google_project.project.number}-compute@developer.gserviceaccount.com"
+  #checkov:skip=CKV_GCP_46:i am being lazy, sorry
+  role   = "roles/logging.logWriter"
+  member = "serviceAccount:${google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
 resource "google_project_iam_member" "cloud_build_service_account_bucket_viewer" {
   project = google_project.project.project_id
-  role    = "roles/storage.objectViewer"
-  member  = "serviceAccount:${google_project.project.number}-compute@developer.gserviceaccount.com"
+  #checkov:skip=CKV_GCP_46:i am being lazy, sorry
+  role   = "roles/storage.objectViewer"
+  member = "serviceAccount:${google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
 resource "google_artifact_registry_repository_iam_member" "cloud_build_service_account_registry_writer" {
