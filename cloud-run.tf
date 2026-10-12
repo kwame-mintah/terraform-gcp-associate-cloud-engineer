@@ -24,11 +24,14 @@ resource "google_cloudfunctions2_function" "cloud_run_2nd_gen_fastapi_static_app
     max_instance_count = 1
     available_memory   = "512M"
     timeout_seconds    = 60
-    ingress_settings   = "ALLOW_INTERNAL_ONLY"
+    # only traffic from within the same VPC network,
+    # or from resources that share the project's VPC Service Controls perimeter.
+    # can change to 'ALLOW_ALL' for a quick test :), but shouldn't be left as this value.
+    ingress_settings = "ALLOW_INTERNAL_ONLY"
 
     # Allow unauthenticated requests if your app is public.
     # Alternatively, configure IAM authentication separately.
-    # all_traffic_on_latest_revision = true
+    all_traffic_on_latest_revision = true
   }
 
   depends_on = [google_storage_bucket_object.upload_cloud_function_http_framework]
