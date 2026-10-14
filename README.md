@@ -71,14 +71,18 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7, <= 1.9.0 |
+| <a name="requirement_archive"></a> [archive](#requirement\_archive) | ~> 2.8.1 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 7.22.0 |
+| <a name="requirement_local"></a> [local](#requirement\_local) | ~> 2.9.1 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.13.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
+| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.8.1 |
 | <a name="provider_google"></a> [google](#provider\_google) | 7.22.0 |
+| <a name="provider_local"></a> [local](#provider\_local) | 2.9.1 |
 | <a name="provider_time"></a> [time](#provider\_time) | 0.13.1 |
 
 ## Modules
@@ -89,12 +93,44 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [google_app_engine_application.app_engine_fastapi_static_app_top_level](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/app_engine_application) | resource |
+| [google_app_engine_standard_app_version.app_engine_standard_fastapi_static_app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/app_engine_standard_app_version) | resource |
+| [google_artifact_registry_repository_iam_member.cloud_build_service_account_registry_writer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository_iam_member) | resource |
+| [google_artifact_registry_repository_iam_member.service_account_app_engine_gae_standard_registry_reader](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository_iam_member) | resource |
+| [google_cloudfunctions2_function.cloud_run_2nd_gen_fastapi_static_app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudfunctions2_function) | resource |
+| [google_compute_network.app_engine_vpc](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network) | resource |
+| [google_compute_subnetwork.app_engine_subnetwork](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork) | resource |
 | [google_folder.environment_folder](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder) | resource |
-| [google_folder_organization_policy.folder_restrict_kms_resource_location](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder_organization_policy) | resource |
+| [google_folder_organization_policy.folder_restrict_resource_location](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder_organization_policy) | resource |
+| [google_org_policy_policy.org_enforce_storage_audit_logging](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy) | resource |
+| [google_org_policy_policy.project_gke_require_binary_auth](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy) | resource |
+| [google_organization_iam_custom_role.iam_custom_org_iam_role_viewer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/organization_iam_custom_role) | resource |
 | [google_project.project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project) | resource |
 | [google_project_iam_audit_config.project_audit](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_audit_config) | resource |
+| [google_project_iam_member.cloud_build_service_account_bucket_viewer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.cloud_build_service_account_logs_writer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.cloudbuild_artifactregistry_writer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.iam_custom_org_iam_role_member](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.service_account_app_engine_artifact_editor](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.service_account_app_engine_service_account_logs_writer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.service_account_app_engine_service_account_networkuser](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.service_account_app_engine_service_account_object_viewer](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_project_service.project_dependant_services](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
+| [google_service_account.app_engine_service_account](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
+| [google_storage_bucket.app_engine_zip_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket_iam_member.default_app_engine_admin_staging_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [google_storage_bucket_iam_member.default_app_engine_service_read_zip_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [google_storage_bucket_object.upload_cloud_function_http_framework](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object) | resource |
+| [google_storage_bucket_object.upload_flexible_fastapi_static_app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object) | resource |
+| [google_storage_bucket_object.upload_standard_fastapi_static_app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_object) | resource |
+| [google_tags_tag_key.org_tag_key](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/tags_tag_key) | resource |
+| [google_tags_tag_key.project_env_tag_key](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/tags_tag_key) | resource |
+| [google_tags_tag_value.org_tag_value](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/tags_tag_value) | resource |
+| [google_tags_tag_value.project_env_tag_value](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/tags_tag_value) | resource |
+| [local_file.python_cloud_run_http_main_py](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [local_file.python_cloud_run_http_requirements](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
 | [time_sleep.wait_30_seconds](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep) | resource |
+| [archive_file.python_cloud_run_zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 | [google_organization.org](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/organization) | data source |
 
 ## Inputs
@@ -107,7 +143,8 @@ No modules.
 | <a name="input_gcp_project"></a> [gcp\_project](#input\_gcp\_project) | The default project to manage resources in. | `string` | n/a | yes |
 | <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | The default region to manage resources in. | `string` | n/a | yes |
 | <a name="input_gcp_zone"></a> [gcp\_zone](#input\_gcp\_zone) | The default zone to manage resources in. Generally,<br/>this zone should be within the default region you specified. | `string` | n/a | yes |
-| <a name="input_organization_domain_name"></a> [organization\_domain\_name](#input\_organization\_domain\_name) | The domain name of the Organization" | `string` | n/a | yes |
+| <a name="input_organization_development_group_email_address"></a> [organization\_development\_group\_email\_address](#input\_organization\_development\_group\_email\_address) | The email address of the development team group within Google Workspace" | `string` | `""` | no |
+| <a name="input_organization_domain_name"></a> [organization\_domain\_name](#input\_organization\_domain\_name) | The domain name of the Organisation" | `string` | n/a | yes |
 
 ## Outputs
 
