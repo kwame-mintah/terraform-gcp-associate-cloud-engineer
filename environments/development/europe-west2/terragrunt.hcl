@@ -1,6 +1,10 @@
 # Terragrunt will copy the Terraform files from the locations specified into this directory
 terraform {
   source = "../../.."
+  before_hook "checkov" {
+    commands = ["apply", "plan"]
+    execute  = ["checkov", "-d", ".", "--quiet", "--config-file", "${get_parent_terragrunt_dir()}/checkov.yaml"]
+  }
 }
 
 locals {

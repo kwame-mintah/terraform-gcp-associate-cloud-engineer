@@ -24,6 +24,8 @@ repos:
         args:
           - --args=--config=.terraform-docs.yml
       - id: terraform_checkov
+        args:
+          - --args=--config-file=checkov.yaml
       - id: terraform_tflint
         args:
           - "--args=--enable-rule=terraform_deprecated_interpolation"
