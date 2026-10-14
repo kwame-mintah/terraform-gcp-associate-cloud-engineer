@@ -30,25 +30,25 @@ resource "google_project_iam_member" "iam_custom_org_iam_role_member" {
   depends_on = [google_organization_iam_custom_role.iam_custom_org_iam_role_viewer]
 }
 
-resource "google_project_iam_member" "service_account_app_engine_service_account_networkuser" {
+resource "google_project_iam_member" "app_engine_service_account_networkuser" {
   project = google_service_account.app_engine_service_account.project
   role    = "roles/compute.networkUser"
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
-resource "google_project_iam_member" "service_account_app_engine_service_account_object_viewer" {
+resource "google_project_iam_member" "app_engine_service_account_object_viewer" {
   project = google_service_account.app_engine_service_account.project
   role    = "roles/storage.objectViewer"
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
-resource "google_project_iam_member" "service_account_app_engine_service_account_logs_writer" {
+resource "google_project_iam_member" "app_engine_service_account_logs_writer" {
   project = google_project.project.project_id
   role    = "roles/logging.logWriter"
   member  = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
-resource "google_storage_bucket_iam_member" "default_app_engine_admin_staging_bucket" {
+resource "google_storage_bucket_iam_member" "default_app_engine_service_account_admin_staging_bucket" {
   bucket = "staging.${google_project.project.project_id}.appspot.com"
   role   = "roles/storage.admin"
   member = "serviceAccount:${google_project.project.project_id}@appspot.gserviceaccount.com"
@@ -77,7 +77,7 @@ resource "google_project_iam_member" "service_account_app_engine_artifact_editor
   member = "serviceAccount:${google_project.project.project_id}@appspot.gserviceaccount.com"
 }
 
-resource "google_artifact_registry_repository_iam_member" "service_account_app_engine_gae_standard_registry_reader" {
+resource "google_artifact_registry_repository_iam_member" "app_engine_gae_service_account_standard_registry_reader" {
   for_each   = toset(["gae-standard", "gae-flexible"])
   project    = google_project.project.project_id
   location   = var.gcp_region
@@ -86,25 +86,25 @@ resource "google_artifact_registry_repository_iam_member" "service_account_app_e
   member     = "serviceAccount:${google_service_account.app_engine_service_account.email}"
 }
 
-resource "google_project_iam_member" "cloudbuild_artifactregistry_writer" {
+resource "google_project_iam_member" "default_cloud_build_service_account_artifactregistry_writer" {
   project = google_project.project.project_id
   role    = "roles/artifactregistry.writer"
   member  = "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
-resource "google_project_iam_member" "cloud_build_service_account_logs_writer" {
+resource "google_project_iam_member" "default_cloud_build_service_account_logs_writer" {
   project = google_project.project.project_id
   role    = "roles/logging.logWriter"
   member  = "serviceAccount:${google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
-resource "google_project_iam_member" "cloud_build_service_account_bucket_viewer" {
+resource "google_project_iam_member" "default_cloud_build_service_account_bucket_viewer" {
   project = google_project.project.project_id
   role    = "roles/storage.objectViewer"
   member  = "serviceAccount:${google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
-resource "google_artifact_registry_repository_iam_member" "cloud_build_service_account_registry_writer" {
+resource "google_artifact_registry_repository_iam_member" "default_cloud_build_service_account_registry_writer" {
   for_each   = toset(["gcf-artifacts"])
   project    = google_project.project.project_id
   location   = var.gcp_region

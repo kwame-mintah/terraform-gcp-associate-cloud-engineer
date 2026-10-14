@@ -101,6 +101,6 @@ resource "google_app_engine_flexible_app_version" "app_engine_flexible_fastapi_s
 
   depends_on = [
     google_storage_bucket_object.upload_flexible_fastapi_static_app,
-    google_project_iam_member.service_account_app_engine_service_account_logs_writer
+    google_project_iam_member.app_engine_service_account_logs_writer
   ]
 }
