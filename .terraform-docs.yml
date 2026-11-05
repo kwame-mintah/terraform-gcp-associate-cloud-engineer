@@ -1,6 +1,6 @@
 formatter: "markdown" # this is required
 
-version: "v0.21.0"
+version: ""
 
 header-from: main.tf
 footer-from: ""
@@ -17,9 +17,9 @@ output:
   file: "README.md"
   mode: inject
   template: |-
-    <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+    <!-- BEGIN_TF_DOCS -->
     {{ .Content }}
-    <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+    <!-- END_TF_DOCS -->
 
 output-values:
   enabled: false

@@ -22,8 +22,9 @@ repos:
           - "--args=--skip-dirs=**/.terragrunt-cache"
       - id: terraform_docs
         args:
+          - --hook-config=--path-to-file=README.md
+          - --hook-config=--add-to-existing-file=true
           - --args=--config=.terraform-docs.yml
-          - --args=--output-check
       - id: terraform_checkov
         args:
           - --args=--config-file=checkov.yaml

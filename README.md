@@ -62,10 +62,10 @@ Additionally, once installed, the hooks can be updated to the latest available v
 Code formatting and documentation for `variables` and `outputs` is generated using [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform/releases) hooks that in turn uses [terraform-docs](https://github.com/terraform-docs/terraform-docs) that will insert/update documentation. The following markers have been added to the `README.md`:
 
 ```
-<!-- {BEGINNING|END} OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+<!-- {BEGIN|END}_TF_DOCS -->
 ```
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -101,6 +101,7 @@ No modules.
 | [google_cloudfunctions2_function.cloud_run_2nd_gen_fastapi_static_app](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloudfunctions2_function) | resource |
 | [google_compute_network.app_engine_vpc](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network) | resource |
 | [google_compute_subnetwork.app_engine_subnetwork](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork) | resource |
+| [google_firestore_database.database](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/firestore_database) | resource |
 | [google_folder.environment_folder](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder) | resource |
 | [google_folder_organization_policy.folder_restrict_resource_location](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/folder_organization_policy) | resource |
 | [google_org_policy_policy.org_enforce_storage_audit_logging](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/org_policy_policy) | resource |
@@ -151,8 +152,15 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_app_engine_default_hostname"></a> [app\_engine\_default\_hostname](#output\_app\_engine\_default\_hostname) | The default hostname of the App Engine application. |
+| <a name="output_app_engine_service_account_email"></a> [app\_engine\_service\_account\_email](#output\_app\_engine\_service\_account\_email) | The email address of the custom service account created for App Engine. |
+| <a name="output_app_engine_standard_url"></a> [app\_engine\_standard\_url](#output\_app\_engine\_standard\_url) | The accessible URL for the standard App Engine FastAPI application (default service). |
+| <a name="output_app_engine_subnetwork_gateway_address"></a> [app\_engine\_subnetwork\_gateway\_address](#output\_app\_engine\_subnetwork\_gateway\_address) | The gateway IPv4 address of the App Engine subnetwork in network.tf. |
+| <a name="output_app_engine_subnetwork_ip_cidr_range"></a> [app\_engine\_subnetwork\_ip\_cidr\_range](#output\_app\_engine\_subnetwork\_ip\_cidr\_range) | The primary IPv4 address range (CIDR block) allocated to the App Engine subnetwork in network.tf. |
+| <a name="output_app_engine_zip_bucket_name"></a> [app\_engine\_zip\_bucket\_name](#output\_app\_engine\_zip\_bucket\_name) | The name of the Google Cloud Storage bucket storing App Engine deployment zip archives and Cloud Function source. |
+| <a name="output_cloud_run_2nd_gen_fastapi_static_app_url"></a> [cloud\_run\_2nd\_gen\_fastapi\_static\_app\_url](#output\_cloud\_run\_2nd\_gen\_fastapi\_static\_app\_url) | The HTTPS endpoint URL to access the 2nd generation Cloud Function / Cloud Run service. |
 | <a name="output_gcp_project_number"></a> [gcp\_project\_number](#output\_gcp\_project\_number) | The numeric identifier of the project. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+<!-- END_TF_DOCS -->
 
 # References
 
